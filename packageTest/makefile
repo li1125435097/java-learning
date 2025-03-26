@@ -1,5 +1,5 @@
 startTcpServer:
-	java Ace.java
+	java TcpServer.java
 
 build:
 	javac -d out a/*.java
