@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# 定义默认值
+DEFAULT_MAIN_CLASS="com.server.App"
+DEFAULT_JAR_NAME="http-server-test-1.jar"
+
+# 根据参数执行不同操作
+case "$1" in
+    # 编译项目
+    "cp")
+        mvn clean compile
+        ;;
+    # 取消编译项目
+    "cl")
+        mvn clean
+        ;;
+    # 运行主类（可指定类名，默认 com.example.App）
+    "run")
+        MAIN_CLASS="${2:-$DEFAULT_MAIN_CLASS}"
+        echo "Running main class: $MAIN_CLASS"
+        mvn exec:java -Dexec.mainClass="$MAIN_CLASS"
+        ;;
+    # 打包为 JAR
+    "pkg")
+        mvn clean package
+        ;;
+    # 运行 JAR（可指定 JAR 名，默认 target/my-maven-demo-1.0-SNAPSHOT.jar）
+    "rjar")
+        JAR_NAME="${2:-$DEFAULT_JAR_NAME}"
+        echo "Running JAR: target/$JAR_NAME"
+        java -jar "target/$JAR_NAME"
+        ;;
+    # 显示帮助信息
+    "--help" | "-h" | *)
+        echo "Usage: ./run [command] [optional_arg]"
+        echo "Commands:"
+        echo "  cp               # 编译项目"
+        echo "  cl               # 取消编译项目"
+        echo "  run [main_class]      # 运行主类（默认: com.example.App）"
+        echo "  pkg              # 打包为 JAR"
+        echo "  rjar [jar_name]  # 运行 JAR（默认: my-maven-demo-1.0-SNAPSHOT.jar）"
+        ;;
+esac
