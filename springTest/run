@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# 定义默认值
+DEFAULT_MAIN_CLASS="com.example.App"
+DEFAULT_JAR_NAME="mvn-test-1.0-SNAPSHOT.jar"
+
+# 根据参数执行不同操作
+case "$1" in
+    # 编译项目
+    "cp")
+        mvn clean compile
+        ;;
+    # 取消编译项目
+    "cl")
+        mvn clean
+        ;;
+    # 部署项目
+    "dp")
+        cp -f target/test.war ../../../apache-tomcat-10.1.39/webapps/
+        ;;
+    # 打包为 WAR
+    "pkg")
+        mvn clean package
+        ;;
+    # 打包+部署
+    "pp")
+        ./run pkg
+        ./run dp
+        ;;
+    # 编译+打包+部署
+    "cpp")
+        ./run cp
+        ./run pkg
+        ./run dp
+        ;;
+    # 显示帮助信息
+    "--help" | "-h" | *)
+        echo "Usage: ./run [command] [optional_arg]"
+        echo "Commands:"
+        echo "  cp               # 编译项目"
+        echo "  cl               # 清理编译项目"
+        echo "  dp               # 部署到tomcat"
+        echo "  pkg              # 打包为 WAR"
+        echo "  pp               # 打包+部署"
+        echo "  cpp              # 编译+打包+部署"
+        ;;
+esac

@@ -23,3 +23,8 @@ java语言学习
 ## 部署
 javase的jar包复制到服务器，运行java -jar执行即可
 javaee的war复制到tomcat的webapps目录下，通过`http://localhost:8080/test/hello`访问(比如test.war包)
+
+## 环境变量依赖
+MAVEN_HOME
+CATALINA_HOME
+JAVA_HOME
