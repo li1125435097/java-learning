@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.UserMapper">
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="email" column="email" />
+    </resultMap>
+
+    <select id="findById" resultMap="userResultMap">
+        SELECT * FROM student WHERE id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO student(name, email) VALUES(#{name}, #{email})
+    </insert>
+
+    <update id="update">
+        UPDATE student SET name=#{name}, email=#{email} WHERE id=#{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM student WHERE id=#{id}
+    </delete>
+
+    <select id="findAll" resultMap="userResultMap">
+        SELECT * FROM student
+    </select>
+</mapper>

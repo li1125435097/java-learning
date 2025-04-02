@@ -18,6 +18,10 @@ case "$1" in
     "dp")
         cp -f target/test.war ../../../apache-tomcat-10.1.39/webapps/
         ;;
+    # 启动tomcat
+    "st")
+        ../../../apache-tomcat-10.1.39/bin/startup.bat
+        ;;
     # 打包为 WAR
     "pkg")
         mvn clean package
@@ -40,6 +44,7 @@ case "$1" in
         echo "  cp               # 编译项目"
         echo "  cl               # 清理编译项目"
         echo "  dp               # 部署到tomcat"
+        echo "  st               # 启动tomcat"
         echo "  pkg              # 打包为 WAR"
         echo "  pp               # 打包+部署"
         echo "  cpp              # 编译+打包+部署"
