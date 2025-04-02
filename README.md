@@ -13,6 +13,7 @@ java语言学习
 - tomcat 10.1+ (servlet测试用)
 - win11(其他windows版本未知，写的都是linux脚本，理论上支持linux)
 - git 2.37.3(代码运行脚本都是linux脚本，所以windows上需git bash支持。wsl那逼java非得是java.exe，跨平台差)
+- vs code(代码编辑器，不依赖啥插件，需要代码提示的下java插件即可)
 
 ## 测试代码运行
 基本每个测试都有run命令行脚本，测试模块执行先编译后运行，基本都是`./run cp`编译，`./run run`执行主类
